@@ -5,14 +5,16 @@ public class Cliente {
     private int cpf_cnpj;
     private String nome;
     private String email;
+    private int telefone;
     private String endereco;
-    private int cidade;
+    private String cidade;
 
 
-    public Cliente(int cpf_cnpj, String nome, String email, String endereco, int cidade){
+    public Cliente(int cpf_cnpj, String nome, String email,int telefone, String endereco, String cidade){
         this.cpf_cnpj = cpf_cnpj;
         this.nome = nome;
         this.email = email;
+        this.telefone = telefone;
         this.endereco = endereco;
         this.cidade = cidade;
     }
@@ -42,19 +44,31 @@ public class Cliente {
         this.email = email;
     }
 
+    public  int getTelefone(){
+        return telefone;
+    }
+    public void setTelefone(int telefone){
+        this.telefone = telefone;
+    }
+
+
     public String getEndereco() {
+
         return endereco;
     }
 
     public void setEndereco(String endereco) {
+
         this.endereco = endereco;
     }
 
-    public int getCidade() {
+    public String getCidade() {
+
         return cidade;
     }
 
-    public void setCidade(int cidade) {
+    public void setCidade(String cidade) {
+
         this.cidade = cidade;
     }
 

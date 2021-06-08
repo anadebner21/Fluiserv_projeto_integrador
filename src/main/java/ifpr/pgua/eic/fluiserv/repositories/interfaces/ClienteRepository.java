@@ -1,4 +1,4 @@
-package ifpr.pgua.eic.fluiserv.interfaces;
+package ifpr.pgua.eic.fluiserv.repositories.interfaces;
 
 import ifpr.pgua.eic.fluiserv.modelos.Cliente;
 

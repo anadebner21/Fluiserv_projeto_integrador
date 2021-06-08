@@ -2,25 +2,28 @@ package ifpr.pgua.eic.fluiserv;
 
 
 import ifpr.pgua.eic.fluiserv.guias.TelaPrincipal;
-import ifpr.pgua.eic.fluiserv.interfaces.ClienteRepository;
+import ifpr.pgua.eic.fluiserv.repositories.interfaces.ClienteRepository;
+import ifpr.pgua.eic.fluiserv.repositories.ClienteRepositoryImpl;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-
-import java.security.cert.PolicyNode;
 
 
 public class Main extends Application {
 
     public static final String PRINCIPAL = "/fxml/telaPrincipal.fxml";
-    public static final String ADICIONARCLIENTE = "/fxml/adicionarClientes.fxml";
-    private static PolicyNode base;
+    public static final String ADICIONARCLIENTE = "/fxml/cadastrarClientes.fxml";
 
 
     private ClienteRepository clienteRepository;
+
+    public static StackPane base;
+
 
     public static void main(String[] args) {
 
@@ -32,20 +35,23 @@ public class Main extends Application {
     @Override
     public void init() throws Exception {
         super.init();
+
+
+        clienteRepository = new ClienteRepositoryImpl();
     }
 
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource(PRINCIPAL));
-        loader.setControllerFactory((aClass -> new TelaPrincipal()));
 
-        Parent root = loader.load();
+        base = new StackPane();
 
-        Scene scene = new Scene(root, 400, 600);
-
-        stage.setScene(scene);
+        stage.setScene(new Scene(base, Region.USE_PREF_SIZE, Region.USE_PREF_SIZE));
         stage.setTitle("FLUISERV CLIMATIZAÇÃO");
+
+        mudaCena(Main.PRINCIPAL,(aClass) -> new TelaPrincipal(clienteRepository));
+
+
+
         stage.show();
 
     }
@@ -66,6 +72,12 @@ public class Main extends Application {
             loader.setControllerFactory(controllerFactory);
 
             Parent novoRoot = loader.load();
+
+
+            if (base.getChildren().add(novoRoot)){
+                base.getChildren().remove(0);
+            }
+            base.getChildren().add(novoRoot);
 
         } catch (Exception e) {
             e.printStackTrace();

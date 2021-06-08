@@ -1,14 +1,16 @@
 package ifpr.pgua.eic.fluiserv.repositories;
 
+import ifpr.pgua.eic.fluiserv.interfaces.ClienteRepository;
 import ifpr.pgua.eic.fluiserv.modelos.Cliente;
 
 import java.util.ArrayList;
 
-public class ClienteRepository implements ifpr.pgua.eic.fluiserv.interfaces.ClienteRepository {
+public class ClienteRepositoryImpl implements ClienteRepository {
 
     private ArrayList<Cliente> clientes;
 
-    public ClienteRepository() {
+    public ClienteRepositoryImpl() {
+
         clientes = new ArrayList<>();
     }
 

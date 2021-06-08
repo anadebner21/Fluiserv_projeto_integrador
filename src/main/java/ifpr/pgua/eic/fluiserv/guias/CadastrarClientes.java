@@ -1,18 +1,14 @@
 package ifpr.pgua.eic.fluiserv.guias;
 
-import ifpr.pgua.eic.fluiserv.Main;
 import ifpr.pgua.eic.fluiserv.modelos.Cliente;
-import ifpr.pgua.eic.fluiserv.repositories.ClienteRepository;
-import javafx.event.ActionEvent;
+import ifpr.pgua.eic.fluiserv.repositories.ClienteRepositoryImpl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
-import java.sql.SQLException;
-
-public class Adicionar_Clientes extends Base {
-    private final ClienteRepository clienteRepository;
+public class CadastrarClientes extends Base {
+    private final ClienteRepositoryImpl clienteRepositoryImpl;
     private final Cliente clienteOriginal;
     @FXML
     private TextField tfNome;
@@ -36,21 +32,21 @@ public class Adicionar_Clientes extends Base {
     private Button btCancela;
 
 
-    public Adicionar_Clientes(ClienteRepository clienteRepository, Cliente cliente) {
-        this.clienteRepository = clienteRepository;
+    public CadastrarClientes(ClienteRepositoryImpl clienteRepositoryImpl, Cliente cliente) {
+        this.clienteRepositoryImpl = clienteRepositoryImpl;
         this.clienteOriginal = cliente;
     }
 
 
-    public Adicionar_Clientes(ClienteRepository clienteRepository) {
+    public CadastrarClientes(ClienteRepositoryImpl clienteRepositoryImpl) {
 
-        this(clienteRepository, null);
+        this(clienteRepositoryImpl, null);
     }
 
     @FXML
-    private void initialize(){
+    private void initialize() {
 
-        if(clienteOriginal != null){
+        if (clienteOriginal != null) {
             tfNome.setText(clienteOriginal.getNome());
             tfEmail.setText(String.valueOf(clienteOriginal.getEmail()));
 
@@ -61,47 +57,43 @@ public class Adicionar_Clientes extends Base {
     }
 
 
-
     @FXML
-    private void adicionar(){
+    private void adicionar() {
         String nome = tfNome.getText();
         String telefone = tfTelefone.getText();
         String email = tfEmail.getText();
         String endereco = tfEndereco.getText();
         int cpf_cnpj = Integer.valueOf(tfCpf.getText());
 
-        if(nome.equals("")){
-            Alert alert = new Alert(Alert.AlertType.ERROR,"Nome inválido!!");
+        if (nome.equals("")) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Nome inválido!!");
             alert.showAndWait();
             return;
         }
 
-        if(email.equals("")){
-            Alert alert = new Alert(Alert.AlertType.ERROR,"Email inválido!!");
+        if (email.equals("")) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Email inválido!!");
             alert.showAndWait();
             return;
         }
-        if(telefone.equals("")){
-            Alert alert = new Alert(Alert.AlertType.ERROR,"Endereço inválido!!");
+        if (telefone.equals("")) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Endereço inválido!!");
             alert.showAndWait();
             return;
         }
-
-
-
 
         Cliente cliente = new Cliente(cpf_cnpj, nome, email, endereco, clienteOriginal.getCidade());
 
-        Main.voltaPrincipal();
 
-
-    }
-
-    @FXML
-    private void cancelar(){
-        Main.voltaPrincipal();
     }
 }
+
+    /*@FXML
+    private void cancelar(){
+        Main.mudaCena(Main.Tela_Principal, (aClass)-> new Tela_Principal());
+
+    }
+}*/
 
 
 

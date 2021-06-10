@@ -1,6 +1,7 @@
 package ifpr.pgua.eic.fluiserv;
 
 
+import ifpr.pgua.eic.fluiserv.guias.CadastrarClientes;
 import ifpr.pgua.eic.fluiserv.guias.TelaPrincipal;
 import ifpr.pgua.eic.fluiserv.repositories.interfaces.ClienteRepository;
 import ifpr.pgua.eic.fluiserv.repositories.ClienteRepositoryImpl;
@@ -18,6 +19,7 @@ public class Main extends Application {
 
     public static final String PRINCIPAL = "/fxml/telaPrincipal.fxml";
     public static final String ADICIONARCLIENTE = "/fxml/cadastrarClientes.fxml";
+    public static final String VERCLIENTE = "/fxml/verClientes.fxml";
 
 
     private ClienteRepository clienteRepository;
@@ -51,7 +53,6 @@ public class Main extends Application {
         mudaCena(Main.PRINCIPAL,(aClass) -> new TelaPrincipal(clienteRepository));
 
 
-
         stage.show();
 
     }
@@ -74,7 +75,7 @@ public class Main extends Application {
             Parent novoRoot = loader.load();
 
 
-            if (base.getChildren().add(novoRoot)){
+            if (base.getChildren().stream().count()>0){
                 base.getChildren().remove(0);
             }
             base.getChildren().add(novoRoot);

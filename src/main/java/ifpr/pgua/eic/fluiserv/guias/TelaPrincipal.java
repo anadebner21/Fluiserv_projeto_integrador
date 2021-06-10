@@ -6,23 +6,14 @@ import ifpr.pgua.eic.fluiserv.repositories.interfaces.ClienteRepository;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class TelaPrincipal {
-
     @FXML
-    private Button btCadastraCliente;
-
-    @FXML
-    private Button btVerClientes;
-
-    @FXML
-    private Button btCadastraMaterial;
-
-    @FXML
-    private Button btVerMateriais;
+    ListView<Cliente> ltwClientes;
 
     private ClienteRepository clienteRepository;
 
@@ -33,6 +24,10 @@ public class TelaPrincipal {
 
     public void cadastrarCliente(){
         Main.mudaCena(Main.ADICIONARCLIENTE, (aClass)-> new CadastrarClientes(clienteRepository));
+    }
+
+    public void verClientes(){
+        Main.mudaCena(Main.VERCLIENTE, (aClass)-> new VerClientes(clienteRepository));
     }
 
 

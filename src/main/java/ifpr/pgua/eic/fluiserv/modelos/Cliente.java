@@ -2,15 +2,15 @@ package ifpr.pgua.eic.fluiserv.modelos;
 
 public class Cliente {
 
-    private int cpf_cnpj;
+    private String cpf_cnpj;
     private String nome;
     private String email;
-    private int telefone;
+    private String telefone;
     private String endereco;
     private String cidade;
 
 
-    public Cliente(int cpf_cnpj, String nome, String email,int telefone, String endereco, String cidade){
+    public Cliente(String cpf_cnpj, String nome, String email,String telefone, String endereco, String cidade){
         this.cpf_cnpj = cpf_cnpj;
         this.nome = nome;
         this.email = email;
@@ -20,11 +20,11 @@ public class Cliente {
     }
 
 
-    public int getCpf_cnpj() {
+    public String getCpf_cnpj() {
         return cpf_cnpj;
     }
 
-    public void setCpf_cnpj(int cpf_cnpj) {
+    public void setCpf_cnpj(String cpf_cnpj) {
         this.cpf_cnpj = cpf_cnpj;
     }
 
@@ -44,10 +44,12 @@ public class Cliente {
         this.email = email;
     }
 
-    public  int getTelefone(){
+    public String getTelefone(){
+
         return telefone;
     }
-    public void setTelefone(int telefone){
+    public void setTelefone(String telefone){
+
         this.telefone = telefone;
     }
 

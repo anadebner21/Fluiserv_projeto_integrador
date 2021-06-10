@@ -6,8 +6,10 @@ import javafx.collections.ObservableList;
 public interface ClienteRepository {
 
 
-    public boolean add(Cliente cliente);
-    public ObservableList<Cliente> lista();
+    boolean add(Cliente cliente);
+    boolean editar(String cpf_cnpj, Cliente clienteAntigo);
+    ObservableList<Cliente> lista();
 
 
 }
+/* boolean editar(int cpf_cnpj, Cliente cliente);*/

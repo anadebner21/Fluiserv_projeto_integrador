@@ -21,10 +21,12 @@ public class Cliente {
 
 
     public String getCpf_cnpj() {
+
         return cpf_cnpj;
     }
 
     public void setCpf_cnpj(String cpf_cnpj) {
+
         this.cpf_cnpj = cpf_cnpj;
     }
 
@@ -84,4 +86,5 @@ public class Cliente {
                 ", cidade=" + cidade +
                 '}';
     }
+
 }

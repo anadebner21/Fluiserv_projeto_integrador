@@ -14,6 +14,12 @@ import java.util.List;
 public class CadastrarClientes {
 
     @FXML
+    private Button btCancelar;
+
+    @FXML
+    private Button btAdicionar;
+
+    @FXML
     private TextField tfNome;
 
     @FXML
@@ -32,13 +38,37 @@ public class CadastrarClientes {
     private TextField tfCidade;
 
 
+
+
     private ClienteRepository clienteRepository;
+    private Cliente clienteOriginal;
+
+    public CadastrarClientes(ClienteRepository clienteRepository, Cliente cliente){
+        this.clienteRepository = clienteRepository;
+        this.clienteOriginal = cliente;
+    }
 
 
     public CadastrarClientes(ClienteRepository clienteRepository) {
 
-        this.clienteRepository = clienteRepository;
+        this(clienteRepository, null);
     }
+
+
+    @FXML
+    private void initialize(){
+       if(clienteOriginal != null){
+           tfCpf.setText(clienteOriginal.getCpf_cnpj());
+           tfNome.setText(clienteOriginal.getNome());
+           tfTelefone.setText(clienteOriginal.getTelefone());
+           tfEmail.setText(clienteOriginal.getEmail());
+           tfEndereco.setText(clienteOriginal.getEndereco());
+           tfCidade.setText(clienteOriginal.getCidade());
+
+           btAdicionar.setText("Alterar");
+       }
+    }
+
 
     @FXML
     public void adicionar() {
@@ -85,20 +115,25 @@ public class CadastrarClientes {
         Cliente cliente = new Cliente(cpf_cnpj, nome, email, telefone, endereco, cidade);
 
 
-        if(clienteRepository.add(cliente)){
-            Alert alert = new Alert(Alert.AlertType.INFORMATION,"CLIENTE CADASTRADO!!");
-            alert.showAndWait();
-            atualizaClientes();
 
-        }
+
+       if (clienteOriginal != null){
+            clienteRepository.editar(clienteOriginal.getCpf_cnpj(), cliente);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION,"Dados do cliente alterado!!");
+            alert.showAndWait();
+        }else{
+            clienteRepository.add(cliente);
+           Alert alert = new Alert(Alert.AlertType.INFORMATION,"CLIENTE CADASTRADO!!");
+           alert.showAndWait();
+
+
+       }
 
 
         Main.mudaCena(Main.PRINCIPAL,(aClass)-> new TelaPrincipal(clienteRepository));
 
     }
-    public void atualizaClientes(){
 
-        }
     @FXML
     private void cancelar(){
         Main.mudaCena(Main.PRINCIPAL,(aClass)-> new TelaPrincipal(clienteRepository));

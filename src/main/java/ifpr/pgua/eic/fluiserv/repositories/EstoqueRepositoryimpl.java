@@ -12,7 +12,7 @@ public class EstoqueRepositoryimpl implements EstoqueRepository {
             estoques = FXCollections.observableArrayList();
         }
         public boolean add(Estoque estoque){
-                estoques.add(new Estoque(estoques.size(), estoque.getNome(), estoque.getDescricao(), estoque.getQuantidade(), estoque.getValor()));
+                estoques.add(new Estoque(estoques.size(), estoque.getNome(), estoque.getDescricao(), estoque.getQuantidade(), Double.valueOf(estoque.getValor())));
 
                 return true;
         }

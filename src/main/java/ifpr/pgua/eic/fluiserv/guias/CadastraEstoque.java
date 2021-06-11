@@ -25,8 +25,8 @@ public class CadastraEstoque {
     @FXML
     private Button btAdicionar;
 
-    private EstoqueRepository estoqueRepository;
-    private Estoque estoqueOriginal;
+    private final EstoqueRepository estoqueRepository;
+    private final Estoque estoqueOriginal;
 
 
 
@@ -47,8 +47,8 @@ public class CadastraEstoque {
         if(estoqueOriginal != null){
             tfProduto.setText(tfProduto.getText());
             tfDescricao.setText(tfDescricao.getText());
-            tfQuantidade.setText(tfQuantidade.getText());
-            tfValor.setText(tfValor.getText());
+            tfQuantidade.setText(String.valueOf(tfQuantidade.getText()));
+            tfValor.setText(String.valueOf(tfValor.getText()));
 
 
             btAdicionar.setText("Alterar");
@@ -59,27 +59,21 @@ public class CadastraEstoque {
     public void adicionar() {
         String nome = tfProduto.getText();
         String descricao = tfDescricao.getText();
-        int quantidade = -1;
-        float valor = -1;
+        int quantidade = quantidade = Integer.parseInt(tfQuantidade.getText());
+        double valor = -1;
 
-
-        try{
-            quantidade = Integer.valueOf(tfQuantidade.getText());
-
-        }catch (NumberFormatException e){
-            Alert alert = new Alert(Alert.AlertType.ERROR,"Quantidade inválida!!");
+    try {
+        Double.valueOf(tfValor.getText());
+    }catch (NumberFormatException e){
+        Alert alert = new Alert(Alert.AlertType.ERROR,"Valor inválido!!");
+        alert.showAndWait();
+        return;
+    }
+        if(quantidade <= 0){
+            Alert alert = new Alert(Alert.AlertType.ERROR,"Quantidade não reconhecida!!");
             alert.showAndWait();
             return;
         }
-        try{
-            valor = Float.valueOf(tfValor.getText());
-
-        }catch (NumberFormatException e){
-            Alert alert = new Alert(Alert.AlertType.ERROR,"Valor inválido!!");
-            alert.showAndWait();
-            return;
-        }
-
 
         if(nome.equals("")){
             Alert alert = new Alert(Alert.AlertType.ERROR,"Nome vazio!!");
@@ -94,7 +88,7 @@ public class CadastraEstoque {
         }
 
 
-        Estoque estoque = new Estoque(nome, descricao, quantidade,valor );
+        Estoque estoque = new Estoque(nome, descricao, quantidade, -1);
 
 
 

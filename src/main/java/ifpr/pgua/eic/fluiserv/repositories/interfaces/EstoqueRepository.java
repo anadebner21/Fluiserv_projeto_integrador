@@ -6,6 +6,6 @@ import javafx.collections.ObservableList;
 public interface EstoqueRepository {
     boolean add(Estoque estoque);
     boolean editar(int cod, Estoque estoque);
-    
+
     ObservableList<Estoque> lista();
 }

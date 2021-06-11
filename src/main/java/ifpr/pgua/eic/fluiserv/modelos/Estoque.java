@@ -5,11 +5,12 @@ public class Estoque {
         private String nome;
         private String descricao;
         private int quantidade;
-        private float valor;
+        private double valor;
 
 
-        public  Estoque(int cod,String nome, String descricao, int quantidade, float valor){
+        public  Estoque(int cod,String nome, String descricao, int quantidade, double valor){
             this.cod = cod;
+            this.nome = nome;
             this.descricao = descricao;
             this.quantidade = quantidade;
             this.valor = valor;
@@ -21,12 +22,10 @@ public class Estoque {
     }
 
     public int getCod() {
-        return cod;
+
+            return cod;
     }
 
-    public void setCod(int cod) {
-        this.cod = cod;
-    }
 
     public String getDescricao() {
         return descricao;
@@ -44,11 +43,11 @@ public class Estoque {
         this.quantidade = quantidade;
     }
 
-    public float getValor() {
+    public double getValor() {
         return valor;
     }
 
-    public void setValor(float valor) {
+    public void setValor(double valor) {
         this.valor = valor;
     }
 

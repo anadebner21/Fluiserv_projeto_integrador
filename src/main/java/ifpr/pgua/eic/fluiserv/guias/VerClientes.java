@@ -2,10 +2,8 @@ package ifpr.pgua.eic.fluiserv.guias;
 
 import ifpr.pgua.eic.fluiserv.Main;
 import ifpr.pgua.eic.fluiserv.modelos.Cliente;
-import ifpr.pgua.eic.fluiserv.repositories.ClienteRepositoryImpl;
 import ifpr.pgua.eic.fluiserv.repositories.interfaces.ClienteRepository;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
@@ -66,7 +64,7 @@ public class VerClientes {
 
         @FXML
         private void cancelar(){
-            Main.mudaCena(Main.PRINCIPAL,(aClass)-> new TelaPrincipal(clienteRepository));
+            Main.voltaTelaPrincipal();
         }
 
     }

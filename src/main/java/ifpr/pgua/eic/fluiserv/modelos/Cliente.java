@@ -19,7 +19,6 @@ public class Cliente {
         this.cidade = cidade;
     }
 
-
     public String getCpf_cnpj() {
 
         return cpf_cnpj;

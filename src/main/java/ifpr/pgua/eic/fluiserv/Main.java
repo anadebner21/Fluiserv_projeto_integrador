@@ -3,8 +3,10 @@ package ifpr.pgua.eic.fluiserv;
 
 import ifpr.pgua.eic.fluiserv.guias.CadastrarClientes;
 import ifpr.pgua.eic.fluiserv.guias.TelaPrincipal;
+import ifpr.pgua.eic.fluiserv.repositories.EstoqueRepositoryimpl;
 import ifpr.pgua.eic.fluiserv.repositories.interfaces.ClienteRepository;
 import ifpr.pgua.eic.fluiserv.repositories.ClienteRepositoryImpl;
+import ifpr.pgua.eic.fluiserv.repositories.interfaces.EstoqueRepository;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,9 +22,13 @@ public class Main extends Application {
     public static final String PRINCIPAL = "/fxml/telaPrincipal.fxml";
     public static final String ADICIONARCLIENTE = "/fxml/cadastrarClientes.fxml";
     public static final String VERCLIENTE = "/fxml/verClientes.fxml";
+    public static final String ADICIONARESTOQUE = "/fxml/estoque.fxml";
+    public static  final String VERESTOQUE = "/fxml/verEstoque.fxml";
 
 
-    private ClienteRepository clienteRepository;
+
+    private static  ClienteRepository clienteRepository;
+    private  static EstoqueRepository estoqueRepository;
 
     public static StackPane base;
 
@@ -40,6 +46,8 @@ public class Main extends Application {
 
 
         clienteRepository = new ClienteRepositoryImpl();
+        estoqueRepository = new EstoqueRepositoryimpl();
+
     }
 
     @Override
@@ -50,7 +58,7 @@ public class Main extends Application {
         stage.setScene(new Scene(base, Region.USE_PREF_SIZE, Region.USE_PREF_SIZE));
         stage.setTitle("FLUISERV CLIMATIZAÇÃO");
 
-        mudaCena(Main.PRINCIPAL,(aClass) -> new TelaPrincipal(clienteRepository));
+        mudaCena(Main.PRINCIPAL, telaPrincipalCallback());
 
 
         stage.show();
@@ -84,4 +92,12 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
+    public static  void voltaTelaPrincipal(){
+        mudaCena(Main.PRINCIPAL, telaPrincipalCallback());
+    }
+
+    private static  Callback telaPrincipalCallback() {
+        return  (aClass)-> new TelaPrincipal(clienteRepository, estoqueRepository);
+    }
+
 }

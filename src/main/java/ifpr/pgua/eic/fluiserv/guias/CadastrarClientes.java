@@ -2,14 +2,11 @@ package ifpr.pgua.eic.fluiserv.guias;
 
 import ifpr.pgua.eic.fluiserv.Main;
 import ifpr.pgua.eic.fluiserv.modelos.Cliente;
-import ifpr.pgua.eic.fluiserv.repositories.ClienteRepositoryImpl;
 import ifpr.pgua.eic.fluiserv.repositories.interfaces.ClienteRepository;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-
-import java.util.List;
 
 public class CadastrarClientes {
 
@@ -117,26 +114,26 @@ public class CadastrarClientes {
 
 
 
-       if (clienteOriginal != null){
+        if (clienteOriginal != null){
             clienteRepository.editar(clienteOriginal.getCpf_cnpj(), cliente);
             Alert alert = new Alert(Alert.AlertType.INFORMATION,"Dados do cliente alterado!!");
             alert.showAndWait();
         }else{
             clienteRepository.add(cliente);
-           Alert alert = new Alert(Alert.AlertType.INFORMATION,"CLIENTE CADASTRADO!!");
-           alert.showAndWait();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION,"CLIENTE CADASTRADO!!");
+            alert.showAndWait();
 
 
-       }
+        }
 
 
-        Main.mudaCena(Main.PRINCIPAL,(aClass)-> new TelaPrincipal(clienteRepository));
-
+            Main.voltaTelaPrincipal();
     }
 
     @FXML
     private void cancelar(){
-        Main.mudaCena(Main.PRINCIPAL,(aClass)-> new TelaPrincipal(clienteRepository));
+        Main.voltaTelaPrincipal();
+
     }
 
 }

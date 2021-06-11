@@ -16,6 +16,6 @@
         <Button fx:id="btVerClientes" text="Visualizar Clientes" GridPane.rowIndex="0" GridPane.columnIndex="1" onAction="#verClientes"/>
         <Button fx:id="btCadastraMaterial" text="Cadastrar Materiais" GridPane.rowIndex="1" GridPane.columnIndex="0" onAction="#cadastrarEstoque"/>
         <Button fx:id="btVerMateriais" text="Visualizar Materiais ou Peças" GridPane.rowIndex="1" GridPane.columnIndex="1" onAction="#verEstoque"/>
-
+        <Button fx:id="btServico" text="Cadastar Serviços" GridPane.rowIndex="2" GridPane.columnIndex="0" onAction="#cadastarServico"/>
 
 </GridPane>

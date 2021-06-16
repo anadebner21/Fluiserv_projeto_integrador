@@ -29,7 +29,7 @@ public class Main extends Application {
     public static final String ADICIONARESTOQUE = "/fxml/estoque.fxml";
     public static  final String VERESTOQUE = "/fxml/verEstoque.fxml";
     public static final  String SERVICO = "/fxml/servico.fxml";
-    public static final String ORDEMSERVICO = "/fxml/servico.fxml";
+    public static final String ORDEMSERVICO = "/fxml/cadastrarOrdemServico.fxml";
 
 
     private static  ClienteRepository clienteRepository;

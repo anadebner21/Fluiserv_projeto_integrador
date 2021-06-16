@@ -25,7 +25,7 @@ public class TelaPrincipal {
 
 
     public void cadastrarCliente(){
-        
+
         Main.mudaCena(Main.ADICIONARCLIENTE, (aClass)-> new CadastrarClientes(clienteRepository));
     }
 

@@ -4,10 +4,12 @@ package ifpr.pgua.eic.fluiserv;
 import ifpr.pgua.eic.fluiserv.guias.CadastrarClientes;
 import ifpr.pgua.eic.fluiserv.guias.TelaPrincipal;
 import ifpr.pgua.eic.fluiserv.repositories.EstoqueRepositoryimpl;
+import ifpr.pgua.eic.fluiserv.repositories.OrdemServicoRepositoryImpl;
 import ifpr.pgua.eic.fluiserv.repositories.ServicoRepositoryimpl;
 import ifpr.pgua.eic.fluiserv.repositories.interfaces.ClienteRepository;
 import ifpr.pgua.eic.fluiserv.repositories.ClienteRepositoryImpl;
 import ifpr.pgua.eic.fluiserv.repositories.interfaces.EstoqueRepository;
+import ifpr.pgua.eic.fluiserv.repositories.interfaces.OrdemServicoRepository;
 import ifpr.pgua.eic.fluiserv.repositories.interfaces.ServicoRepository;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -27,11 +29,13 @@ public class Main extends Application {
     public static final String ADICIONARESTOQUE = "/fxml/estoque.fxml";
     public static  final String VERESTOQUE = "/fxml/verEstoque.fxml";
     public static final  String SERVICO = "/fxml/servico.fxml";
+    public static final String ORDEMSERVICO = "/fxml/servico.fxml";
 
 
     private static  ClienteRepository clienteRepository;
     private  static EstoqueRepository estoqueRepository;
     private static ServicoRepository servicoRepository;
+    private static OrdemServicoRepository ordemServicoRepository;
 
     public static StackPane base;
 
@@ -51,6 +55,8 @@ public class Main extends Application {
         clienteRepository = new ClienteRepositoryImpl();
         estoqueRepository = new EstoqueRepositoryimpl();
         servicoRepository = new ServicoRepositoryimpl();
+        ordemServicoRepository = new OrdemServicoRepositoryImpl();
+
 
     }
 
@@ -101,7 +107,7 @@ public class Main extends Application {
     }
 
     private static  Callback telaPrincipalCallback() {
-        return  (aClass)-> new TelaPrincipal(clienteRepository, estoqueRepository, servicoRepository);
+        return  (aClass)-> new TelaPrincipal(clienteRepository, estoqueRepository, servicoRepository, ordemServicoRepository);
     }
 
 }

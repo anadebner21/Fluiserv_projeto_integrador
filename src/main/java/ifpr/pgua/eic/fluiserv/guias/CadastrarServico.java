@@ -1,7 +1,6 @@
 package ifpr.pgua.eic.fluiserv.guias;
 
 import ifpr.pgua.eic.fluiserv.Main;
-import ifpr.pgua.eic.fluiserv.modelos.Cliente;
 import ifpr.pgua.eic.fluiserv.modelos.Servico;
 import ifpr.pgua.eic.fluiserv.repositories.interfaces.ServicoRepository;
 import javafx.fxml.FXML;
@@ -78,7 +77,7 @@ public class CadastrarServico {
 
             Servico servico = ltwServico.getSelectionModel().getSelectedItem();
             if (servico != null) {
-                Main.mudaCena(Main.SERVICO, (aClass) -> new CadastrarServico(servicoRepository, servico));
+                Main.mudaCena(Main.SERVICO, (aClass) -> new CadastrarServico(servicoRepository));
             }
 
         }

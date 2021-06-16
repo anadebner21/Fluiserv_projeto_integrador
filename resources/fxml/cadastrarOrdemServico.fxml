@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+<GridPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="ifpr.pgua.eic.fluiserv.guias.CadastrarOrdemServico"
+          prefHeight="400.0" prefWidth="600.0">
+
+    <Label text="Clientes" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+    <ListView fx:id="ltwClientes" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+    <Label text="Serviço realizado: " GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+    <ListView fx:id="ltwServico" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+    <Label text="Descrição do serviço realizado:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+    <TextField fx:id="tfDescricao" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+    <Label text="Modelo do aparelho:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+    <RadioButton text="ACJ" fx:id="rbAcj" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+    <RadioButton text="Spilt" fx:id="rbSplit" GridPane.rowIndex="4" GridPane.columnIndex="1" />
+    <RadioButton text="Piso-Teto" fx:id="rbPisoTeto" GridPane.rowIndex="4" GridPane.columnIndex="2"/>
+    <RadioButton text="Cassete" fx:id="rbCassete" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+    <RadioButton text="Portátil" fx:id="rbPortatil" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+    <Label text="Marca do aparelho:" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+    <RadioButton text="LG" fx:id="rbLG" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+    <RadioButton text="SPRINGER" fx:id="rbSpringer" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+    <RadioButton text="ELGIN" fx:id="rbElgin" GridPane.rowIndex="7" GridPane.columnIndex="2"/>
+    <RadioButton text="CONSUL" fx:id="rbConsul" GridPane.rowIndex="7" GridPane.columnIndex="3"/>
+    <RadioButton text="ELECTROLUX" fx:id="rbElectrolux" GridPane.rowIndex="8" GridPane.columnIndex="0"/>
+    <RadioButton text="KOMECO" fx:id="rbKomeco" GridPane.rowIndex="8" GridPane.columnIndex="1"/>
+    <RadioButton text="OUTRA" fx:id="rbOutra" GridPane.rowIndex="8" GridPane.columnIndex="2"/>
+
+    <Label text="Descrição do aparelho:" GridPane.rowIndex="9" GridPane.columnIndex="0"/>
+    <TextField fx:id="tfDesAparelho" GridPane.rowIndex="9" GridPane.columnIndex="1"/>
+
+    <Label text="Estoque" GridPane.rowIndex="10" GridPane.columnIndex="0"/>
+    <ListView fx:id="ltwEstoque" GridPane.rowIndex="11" GridPane.columnIndex="0"  />
+    <Text fx:id="txtValor" text="R$ 0.0" GridPane.rowIndex="12" GridPane.columnIndex="0"/>
+
+    <Label text="Data da realização do serviço:" GridPane.rowIndex="13" GridPane.columnIndex="0"/>
+    <TextField fx:id="tfData" GridPane.rowIndex="13" GridPane.columnIndex="1"/>
+
+    <Label text="Desconto" GridPane.rowIndex="14" GridPane.columnIndex="0"/>
+    <RadioButton text="Sim" fx:id="rbSim" GridPane.rowIndex="15" GridPane.columnIndex="0"/>
+    <RadioButton text="Não" fx:id="rbNao" GridPane.rowIndex="15" GridPane.columnIndex="1"/>
+
+    <Label text="Valor Sub Total:" GridPane.rowIndex="16" GridPane.columnIndex="0"/>
+    <TextField fx:id="tfSubtotal" GridPane.rowIndex="16" GridPane.columnIndex="1"/>
+    <Label text="Valor Total:" GridPane.rowIndex="17" GridPane.columnIndex="0"/>
+    <TextField fx:id="tfTotal" GridPane.rowIndex="17" GridPane.columnIndex="1"/>
+
+
+    <HBox GridPane.rowIndex="18" GridPane.columnIndex="0"/>
+    <Button text="Adicionar" onAction="#add"/>
+    <Button text="Cancelar" onAction="#cancelar" />
+
+</GridPane>

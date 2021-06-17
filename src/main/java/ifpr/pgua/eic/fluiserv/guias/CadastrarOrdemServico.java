@@ -107,7 +107,7 @@ public class CadastrarOrdemServico {
         this.ordemServicoRepository = ordemServicoRepository;
         this.servicoRepository = servicoRepository;
         this.estoqueRepository = estoqueRepository;
-
+        System.out.println("Aqui1");
 
 
 
@@ -150,7 +150,7 @@ public class CadastrarOrdemServico {
     @FXML
     private void processaMaterial(MouseEvent evt){
         Estoque estoque = ltwEstoque.getSelectionModel().getSelectedItem();
-
+        System.out.println("Aqui");
 
         if(evt.getClickCount() == 1 && evt.getButton() == MouseButton.PRIMARY){
 

@@ -1,5 +1,7 @@
 package ifpr.pgua.eic.fluiserv.modelos;
 
+import javafx.collections.ObservableList;
+
 public class Estoque {
         private int cod;
         private String nome;
@@ -7,8 +9,7 @@ public class Estoque {
         private int quantidade;
         private double valor;
 
-
-        public  Estoque(int cod,String nome, String descricao, int quantidade, double valor){
+    public  Estoque(int cod,String nome, String descricao, int quantidade, double valor){
             this.cod = cod;
             this.nome = nome;
             this.descricao = descricao;
@@ -69,4 +70,8 @@ public class Estoque {
                 ", valor=" + valor +
                 '}';
     }
+
+
+
+
 }

@@ -1,29 +1,43 @@
 package ifpr.pgua.eic.fluiserv.modelos;
 
 
+import javafx.collections.ObservableList;
+import javafx.scene.input.DataFormat;
+
 public class OrdemServico {
     private int cod;
-    private String descricao;
+    private String descricaoDoServico;
+    private String descricaoAparelho;
     private double valorSubTotal;
     private double valorTotal;
+    private double valorMaterial;
+    private double valorServico;
     private Servico servico;
     private Estoque estoque;
     private Cliente cliente;
     private boolean modelo;
     private boolean marca;
+    private DataFormat data;
+
+    private ObservableList<Estoque> estoques;
+    private ObservableList<Servico> servicos;
 
 
 
-    public OrdemServico(int cod, String descricao, double valorSubTotal, double valorTotal, Servico servico, Estoque estoque, Cliente cliente, boolean modelo, boolean marca){
+    public OrdemServico(int cod, String descricaoDoServico, String descricaoAparelho, double valorSubTotal, double valorTotal, double valorMaterial,double valorServico, Servico servico, Estoque estoque, Cliente cliente, boolean modelo, boolean marca, DataFormat data){
         this.cod = cod;
-        this.descricao = descricao;
+        this.descricaoDoServico = descricaoDoServico;
+        this.descricaoAparelho = descricaoAparelho;
         this.valorSubTotal = valorSubTotal;
         this.valorTotal = valorTotal;
+        this.valorMaterial = valorMaterial;
+        this.valorServico = valorServico;
         this.servico = servico;
         this.estoque = estoque;
         this.cliente = cliente;
         this.modelo = modelo;
         this.marca = marca;
+        this.data = data;
 
 
     }
@@ -36,16 +50,20 @@ public class OrdemServico {
         this.cod = cod;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getDescricaoDoServico() {
+        return descricaoDoServico;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setDescricaoDoServico(String descricaoDoServico) {
+        this.descricaoDoServico = descricaoDoServico;
     }
 
-    public void setValorSubTotal(double valorSubTotal) {
-        this.valorSubTotal = valorSubTotal;
+    public String getDescricaoAparelho() {
+        return descricaoAparelho;
+    }
+
+    public void setDescricaoAparelho(String descricaoAparelho) {
+        this.descricaoAparelho = descricaoAparelho;
     }
 
     public double getValorTotal() {
@@ -89,6 +107,7 @@ public class OrdemServico {
     }
 
     public double getValorSubTotal() {
+
         return servico.getValor() + estoque.getValor();
     }
 
@@ -104,7 +123,8 @@ public class OrdemServico {
     public String toString() {
         return "OrdemServico{" +
                 "cod=" + cod +
-                ", descricao='" + descricao + '\'' +
+                ", descricaoDoServico='" + descricaoDoServico + '\'' +
+                ", descricaoAparelho='" + descricaoAparelho + '\'' +
                 ", valorSubTotal=" + valorSubTotal +
                 ", valorTotal=" + valorTotal +
                 ", servico=" + servico +
@@ -115,5 +135,27 @@ public class OrdemServico {
                 '}';
     }
 
+    public boolean adiciona(Estoque estoque) {
+       this.estoques.add(estoque);
 
+       return true;
+    }
+
+    public boolean remove(Estoque estoque) {
+        this.estoques.remove(estoque);
+        return true;
+    }
+
+    public double getValorMaterial() {
+
+            this.valorMaterial = 0.0;
+
+            for(Estoque e:estoques){
+                this.valorMaterial += e.getValor();
+            }
+
+            return this.valorMaterial;
+
+    }
 }
+

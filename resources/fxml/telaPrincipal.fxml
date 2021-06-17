@@ -18,5 +18,6 @@
         <Button  text="Visualizar Materiais ou Peças" GridPane.rowIndex="1" GridPane.columnIndex="1" onAction="#verEstoque"/>
         <Button text="Cadastar Serviços" GridPane.rowIndex="2" GridPane.columnIndex="0" onAction="#cadastarServico"/>
         <Button  text="Cadastar Ordens de Serviço" GridPane.rowIndex="3" GridPane.columnIndex="0" onAction="#cadastrarOrdemServico"/>
+        <Button  text="Visualizar Ordens de Serviço" GridPane.rowIndex="3" GridPane.columnIndex="1" onAction="#verOrdemServico"/>
 
 </GridPane>

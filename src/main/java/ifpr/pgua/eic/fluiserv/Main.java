@@ -30,12 +30,14 @@ public class Main extends Application {
     public static  final String VERESTOQUE = "/fxml/verEstoque.fxml";
     public static final  String SERVICO = "/fxml/servico.fxml";
     public static final String ORDEMSERVICO = "/fxml/cadastrarOrdemServico.fxml";
+    public static final String VERORDEMSERVICO = "/fxml/verOrdemServico.fxml";
 
 
     private static  ClienteRepository clienteRepository;
     private  static EstoqueRepository estoqueRepository;
     private static ServicoRepository servicoRepository;
     private static OrdemServicoRepository ordemServicoRepository;
+
 
     public static StackPane base;
 

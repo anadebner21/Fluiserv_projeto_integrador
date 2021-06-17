@@ -42,8 +42,8 @@
     <TextField fx:id="tfDesAparelho" GridPane.rowIndex="9" GridPane.columnIndex="1"/>
 
     <Label text="Estoque" GridPane.rowIndex="10" GridPane.columnIndex="0"/>
-    <ListView fx:id="ltwEstoque" GridPane.rowIndex="11" GridPane.columnIndex="0"  />
-    <Text fx:id="txtValorMaterial" text="R$ 0.0" GridPane.rowIndex="12" GridPane.columnIndex="0" onMouseClicked="#processaMaterial"/>
+    <ListView fx:id="ltwEstoque" GridPane.rowIndex="11" GridPane.columnIndex="0" onMouseClicked="#processaMaterial"/>
+    <Text fx:id="txtValorMaterial" text="R$ 0.0" GridPane.rowIndex="12" GridPane.columnIndex="0" />
 
     <Label text="Data da realização do serviço:" GridPane.rowIndex="13" GridPane.columnIndex="0"/>
     <TextField fx:id="tfData" GridPane.rowIndex="13" GridPane.columnIndex="1"/>

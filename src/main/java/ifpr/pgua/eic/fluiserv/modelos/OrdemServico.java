@@ -1,6 +1,7 @@
 package ifpr.pgua.eic.fluiserv.modelos;
 
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.input.DataFormat;
 
@@ -12,8 +13,10 @@ public class OrdemServico {
     private double valorTotal;
     private double valorMaterial;
     private double valorServico;
+    //Lembrar de remover!!!
     private Servico servico;
     private Estoque estoque;
+
     private Cliente cliente;
     private boolean modelo;
     private boolean marca;
@@ -40,6 +43,11 @@ public class OrdemServico {
         this.data = data;
 
 
+    }
+
+    public OrdemServico(){
+        this.estoques = FXCollections.observableArrayList();
+        this.servicos = FXCollections.observableArrayList();
     }
 
     public int getCod() {

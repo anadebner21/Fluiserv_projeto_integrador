@@ -10,15 +10,16 @@ import ifpr.pgua.eic.fluiserv.repositories.interfaces.EstoqueRepository;
 import ifpr.pgua.eic.fluiserv.repositories.interfaces.OrdemServicoRepository;
 import ifpr.pgua.eic.fluiserv.repositories.interfaces.ServicoRepository;
 import javafx.fxml.FXML;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.DataFormat;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
+
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class CadastrarOrdemServico {
 
@@ -74,7 +75,7 @@ public class CadastrarOrdemServico {
     private ListView<Estoque> ltwEstoque;
 
     @FXML
-    private Text tXTValorMaterial;
+    private Text txtValorMaterial;
 
     @FXML
     private TextField tfData;
@@ -109,6 +110,7 @@ public class CadastrarOrdemServico {
         this.estoqueRepository = estoqueRepository;
         System.out.println("Aqui1");
 
+        ordemServico = new OrdemServico();
 
 
     }
@@ -164,7 +166,7 @@ public class CadastrarOrdemServico {
         }
         ltwEstoque.refresh();
         ltwEstoque.getSelectionModel().clearSelection();
-        tXTValorMaterial.setText("R$ "+ordemServico.getValorMaterial());
+        txtValorMaterial.setText("R$ "+ordemServico.getValorMaterial());
     }
 
     @FXML
@@ -173,17 +175,28 @@ public class CadastrarOrdemServico {
         String descricaoAparelho = tfDesAparelho.getText();
         double valorSubTotal = Double.valueOf(tfSubtotal.getText());
         double valorTotal = Double.valueOf(tfTotal.getText());
-        double valorMaterial = Double.valueOf(tXTValorMaterial.getText());
+        double valorMaterial = Double.valueOf(txtValorMaterial.getText());
         double valorServico = Double.valueOf(txtValorServico.getText());
         boolean modelo = rbAcj.isSelected();
         boolean marca = rbLG.isSelected();
         Cliente cliente = ltwClientes.getSelectionModel().getSelectedItem();
         Servico servico = ltwServico.getSelectionModel().getSelectedItem();
         Estoque estoque = ltwEstoque.getSelectionModel().getSelectedItem();
-        DataFormat data = DataFormat.lookupMimeType(tfData.getText());
 
+        DateTimeFormatter formater = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-        OrdemServico ordemServico = new OrdemServico(-1, descricaoDoServico, descricaoAparelho, -1, valorTotal, valorMaterial, valorServico, servico, estoque, cliente, modelo, marca, data);
+        //DataFormat data = DataFormat.lookupMimeType(tfData.getText());
+        try {
+            LocalDate data = LocalDate.from(formater.parse(tfData.getText()));
+        }catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR,"Data inválida!!!");
+            alert.showAndWait();
+            return;
+        }
+        this.ordemServico.setDescricaoDoServico(descricaoDoServico);
+        //COLOCAR OS OUTROS SETs
+
+        //OrdemServico ordemServico = new OrdemServico(-1, descricaoDoServico, descricaoAparelho, -1, valorTotal, valorMaterial, valorServico, servico, estoque, cliente, modelo, marca, data);
 
         ordemServicoRepository.add(ordemServico);
 

@@ -35,6 +35,31 @@ public class OrdemServicoRepositoryImpl implements OrdemServicoRepository {
     }
 
     @Override
+    public boolean editar(int cod, OrdemServico ordemServico) {
+        for(OrdemServico o:ordemServicos){
+            if(o.getCod() == cod){
+                o.setDescricaoDoServico(ordemServico.getDescricaoDoServico());
+                o.setDescricaoAparelho(ordemServico.getDescricaoAparelho());
+                o.setValorTotal(ordemServico.getValorTotal());
+                o.setValorServico(ordemServico.getValorServico());
+                o.setValorMaterial(ordemServico.getValorMaterial());
+                o.setMarca(ordemServico.isMarca());
+                o.setModelo(ordemServico.isModelo());
+                o.setCliente(ordemServico.getCliente());
+                o.setData(ordemServico.getData());
+
+
+                return  true;
+            }
+        }
+        return false;
+    }
+
+
+
+
+
+    @Override
     public ObservableList<OrdemServico> lista() {
         return FXCollections.unmodifiableObservableList(ordemServicos);
 

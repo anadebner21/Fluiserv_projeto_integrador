@@ -16,7 +16,7 @@
     <ListView fx:id="ltwClientes" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
     <Label text="Serviço realizado: " GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-    <ListView fx:id="ltwServico" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+    <ListView fx:id="ltwServico" GridPane.rowIndex="1" GridPane.columnIndex="1" onMouseClicked="#processaServico"/>
     <Text fx:id="txtValorServico" text="R$ 0.0" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
 
     <Label text="Descrição do serviço realizado:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>

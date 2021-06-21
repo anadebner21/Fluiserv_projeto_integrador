@@ -11,7 +11,10 @@
             fx:controller="ifpr.pgua.eic.fluiserv.guias.VerEstoque"
             prefHeight="400.0" prefWidth="600.0">
 
-    <ListView fx:id="ltwEstoque" GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.columnSpan="3" onMouseClicked="#editarEstoque"/>
+    <HBox GridPane.columnIndex="0" GridPane.rowIndex="0" spacing="5" GridPane.columnSpan="4" GridPane.rowSpan="1">
+        <ListView fx:id="ltwEstoque" GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.columnSpan="3" onMouseClicked="#editarEstoque" onMousePressed="#atualizaDadosEstoque"/>
+        <TextArea fx:id="dadosEstoque"/>
+    </HBox>
     <Button text="Voltar" GridPane.rowIndex="1" GridPane.columnIndex="2" onAction="#cancelar"/>
 
 

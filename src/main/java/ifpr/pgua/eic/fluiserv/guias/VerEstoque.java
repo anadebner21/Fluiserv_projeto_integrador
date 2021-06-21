@@ -1,11 +1,13 @@
 package ifpr.pgua.eic.fluiserv.guias;
 
 import ifpr.pgua.eic.fluiserv.Main;
+import ifpr.pgua.eic.fluiserv.modelos.Cliente;
 import ifpr.pgua.eic.fluiserv.modelos.Estoque;
 import ifpr.pgua.eic.fluiserv.repositories.interfaces.EstoqueRepository;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 
@@ -13,6 +15,9 @@ public class VerEstoque {
 
     @FXML
     ListView<Estoque> ltwEstoque;
+
+    @FXML
+    private TextArea dadosEstoque;
 
     private EstoqueRepository estoqueRepository;
 
@@ -64,6 +69,27 @@ public class VerEstoque {
 
         }
     }
+
+    @FXML
+    private void atualizaDadosEstoque() {
+
+        Estoque e = (Estoque) ltwEstoque.getSelectionModel().getSelectedItem();
+
+        if (e != null) {
+            String str = "";
+            str += "CÓDIGO DO PRODUTO: " + e.getCod() + "\n";
+            str += "NOME: " + e.getNome() + "\n";
+            str += "DESCRIÇÃO " + e.getDescricao() + "\n";
+            str += "QUANTIDADE: " + e.getQuantidade() + "\n";
+            str += "VALOR: " + e.getValor() + "\n";
+
+
+            dadosEstoque.clear();
+            dadosEstoque.setText(str);
+        }
+    }
+
+
 
 
 

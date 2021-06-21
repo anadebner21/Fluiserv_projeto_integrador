@@ -46,7 +46,7 @@ public class TelaPrincipal {
         Main.mudaCena(Main.VERESTOQUE, (aClass)-> new VerEstoque(estoqueRepository));
     }
     public void cadastrarOrdemServico(){
-        Main.mudaCena(Main.ORDEMSERVICO, (aClass)-> new CadastrarOrdemServico(ordemServicoRepository, clienteRepository, servicoRepository, estoqueRepository));
+        Main.mudaCena(Main.ORDEMSERVICO, (aClass)-> new CadastrarOrdemServico(ordemServicoRepository, clienteRepository, servicoRepository, estoqueRepository, null));
     }
     public void verOrdemServico(){
         Main.mudaCena(Main.VERORDEMSERVICO, (aClass)-> new VerOrdemServico(ordemServicoRepository));

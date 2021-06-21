@@ -5,6 +5,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.input.DataFormat;
 
+import java.time.LocalDate;
+
 public class OrdemServico {
     private int cod;
     private String descricaoDoServico;
@@ -13,21 +15,24 @@ public class OrdemServico {
     private double valorTotal;
     private double valorMaterial;
     private double valorServico;
-    //Lembrar de remover!!!
-    private Servico servico;
-    private Estoque estoque;
-
     private Cliente cliente;
     private boolean modelo;
     private boolean marca;
-    private DataFormat data;
+    private LocalDate data;
 
     private ObservableList<Estoque> estoques;
     private ObservableList<Servico> servicos;
 
 
+    public LocalDate getData() {
+        return data;
+    }
 
-    public OrdemServico(int cod, String descricaoDoServico, String descricaoAparelho, double valorSubTotal, double valorTotal, double valorMaterial,double valorServico, Servico servico, Estoque estoque, Cliente cliente, boolean modelo, boolean marca, DataFormat data){
+    public void setData(LocalDate data) {
+        this.data = data;
+    }
+
+    public OrdemServico(int cod, String descricaoDoServico, String descricaoAparelho, double valorSubTotal, double valorTotal, double valorMaterial, double valorServico, Cliente cliente, boolean modelo, boolean marca, LocalDate data){
         this.cod = cod;
         this.descricaoDoServico = descricaoDoServico;
         this.descricaoAparelho = descricaoAparelho;
@@ -35,8 +40,6 @@ public class OrdemServico {
         this.valorTotal = valorTotal;
         this.valorMaterial = valorMaterial;
         this.valorServico = valorServico;
-        this.servico = servico;
-        this.estoque = estoque;
         this.cliente = cliente;
         this.modelo = modelo;
         this.marca = marca;
@@ -48,6 +51,22 @@ public class OrdemServico {
     public OrdemServico(){
         this.estoques = FXCollections.observableArrayList();
         this.servicos = FXCollections.observableArrayList();
+    }
+
+    public void setValorSubTotal(double valorSubTotal) {
+        this.valorSubTotal = valorSubTotal;
+    }
+
+    public void setValorMaterial(double valorMaterial) {
+        this.valorMaterial = valorMaterial;
+    }
+
+    public double getValorServico() {
+        return valorServico;
+    }
+
+    public void setValorServico(double valorServico) {
+        this.valorServico = valorServico;
     }
 
     public int getCod() {
@@ -82,14 +101,6 @@ public class OrdemServico {
         this.valorTotal = valorTotal;
     }
 
-    public void setServico(Servico servico) {
-        this.servico = servico;
-    }
-
-    public void setEstoque(Estoque estoque) {
-        this.estoque = estoque;
-    }
-
     public Cliente getCliente() {
         return cliente;
     }
@@ -114,18 +125,6 @@ public class OrdemServico {
         this.marca = marca;
     }
 
-    public double getValorSubTotal() {
-
-        return servico.getValor() + estoque.getValor();
-    }
-
-    public Servico getServico() {
-        return servico;
-    }
-
-    public Estoque getEstoque() {
-        return estoque;
-    }
 
     @Override
     public String toString() {
@@ -135,22 +134,34 @@ public class OrdemServico {
                 ", descricaoAparelho='" + descricaoAparelho + '\'' +
                 ", valorSubTotal=" + valorSubTotal +
                 ", valorTotal=" + valorTotal +
-                ", servico=" + servico +
-                ", estoque=" + estoque +
+                ", valorMaterial=" + valorMaterial +
+                ", valorServico=" + valorServico +
                 ", cliente=" + cliente +
                 ", modelo=" + modelo +
                 ", marca=" + marca +
+                ", data=" + data +
                 '}';
     }
 
     public boolean adiciona(Estoque estoque) {
        this.estoques.add(estoque);
 
+
        return true;
     }
 
     public boolean remove(Estoque estoque) {
         this.estoques.remove(estoque);
+        return true;
+    }
+    public boolean add(Servico servico){
+        this.servicos.add(servico);
+
+        return true;
+    }
+    public boolean rmv(Servico servico){
+        this.servicos.remove(servico);
+
         return true;
     }
 
@@ -165,5 +176,7 @@ public class OrdemServico {
             return this.valorMaterial;
 
     }
+
+
 }
 

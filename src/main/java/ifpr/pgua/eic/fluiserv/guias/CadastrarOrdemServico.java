@@ -101,18 +101,23 @@ public class CadastrarOrdemServico {
     private OrdemServicoRepository ordemServicoRepository;
     private ServicoRepository servicoRepository;
     private EstoqueRepository estoqueRepository;
+    private OrdemServico ordemServicoOriginal;
 
 
-    public CadastrarOrdemServico(OrdemServicoRepository ordemServicoRepository, ClienteRepository clienteRepository, ServicoRepository servicoRepository, EstoqueRepository estoqueRepository) {
+
+    public CadastrarOrdemServico(OrdemServicoRepository ordemServicoRepository, ClienteRepository clienteRepository, ServicoRepository servicoRepository, EstoqueRepository estoqueRepository, OrdemServico ordemServicoOriginal) {
         this.clienteRepository = clienteRepository;
         this.ordemServicoRepository = ordemServicoRepository;
         this.servicoRepository = servicoRepository;
         this.estoqueRepository = estoqueRepository;
-        System.out.println("Aqui1");
+        this.ordemServicoOriginal = ordemServicoOriginal;
 
         ordemServico = new OrdemServico();
 
 
+    }
+    public CadastrarOrdemServico(OrdemServicoRepository ordemServicoRepository, ClienteRepository clienteRepository, EstoqueRepository estoqueRepository, ServicoRepository servicoRepository){
+        this(ordemServicoRepository, clienteRepository, servicoRepository, estoqueRepository, null);
     }
 
     @FXML
@@ -148,11 +153,45 @@ public class CadastrarOrdemServico {
 
         ltwEstoque.setItems(estoqueRepository.lista());
 
+
+        ltwServico.setCellFactory(servicoListView -> new ListCell<>(){
+            @Override
+                protected void updateItem(Servico servico, boolean b){
+                    super.updateItem(servico, b);
+                    if(servico != null){
+                        setText(servico.getNome());
+                    }else {
+                        setText("");
+                    }
+            }
+        });
+        ltwServico.setItems(servicoRepository.lista());
+
+    }
+
+    @FXML
+    private void processaServico(MouseEvent event){
+        Servico servico = ltwServico.getSelectionModel().getSelectedItem();
+
+        if(event.getClickCount() == 1 && event.getButton() == MouseButton.PRIMARY){
+
+            if(servico != null){
+                ordemServico.add(servico);
+            }
+            else if(event.getButton() == MouseButton.SECONDARY){
+                if(servico != null){
+                    ordemServico.rmv(servico);
+                }
+            }
+            ltwServico.refresh();
+            ltwServico.getSelectionModel().clearSelection();
+            txtValorServico.setText("R$ " +ordemServico.getValorServico());
+        }
     }
     @FXML
     private void processaMaterial(MouseEvent evt){
         Estoque estoque = ltwEstoque.getSelectionModel().getSelectedItem();
-        System.out.println("Aqui");
+
 
         if(evt.getClickCount() == 1 && evt.getButton() == MouseButton.PRIMARY){
 
@@ -169,6 +208,7 @@ public class CadastrarOrdemServico {
         txtValorMaterial.setText("R$ "+ordemServico.getValorMaterial());
     }
 
+
     @FXML
     private void add(){
         String descricaoDoServico = tfDescricaoServico.getText();
@@ -180,25 +220,40 @@ public class CadastrarOrdemServico {
         boolean modelo = rbAcj.isSelected();
         boolean marca = rbLG.isSelected();
         Cliente cliente = ltwClientes.getSelectionModel().getSelectedItem();
-        Servico servico = ltwServico.getSelectionModel().getSelectedItem();
-        Estoque estoque = ltwEstoque.getSelectionModel().getSelectedItem();
 
         DateTimeFormatter formater = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-        //DataFormat data = DataFormat.lookupMimeType(tfData.getText());
         try {
             LocalDate data = LocalDate.from(formater.parse(tfData.getText()));
         }catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR,"Data inválida!!!");
             alert.showAndWait();
             return;
+
         }
         this.ordemServico.setDescricaoDoServico(descricaoDoServico);
-        //COLOCAR OS OUTROS SETs
-
-        //OrdemServico ordemServico = new OrdemServico(-1, descricaoDoServico, descricaoAparelho, -1, valorTotal, valorMaterial, valorServico, servico, estoque, cliente, modelo, marca, data);
+        this.ordemServico.setDescricaoAparelho(descricaoAparelho);
+        this.ordemServico.setValorSubTotal(valorSubTotal);
+        this.ordemServico.setValorTotal(valorTotal);
+        this.ordemServico.setValorMaterial(valorMaterial);
+        this.ordemServico.setValorServico(valorServico);
+        this.ordemServico.setModelo(modelo);
+        this.ordemServico.setMarca(marca);
+        this.ordemServico.setCliente(cliente);
 
         ordemServicoRepository.add(ordemServico);
+        if (ordemServicoRepository != null){
+            ordemServicoRepository.editar(ordemServicoOriginal.getCod(), ordemServico);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION,"Dados da ordem de serviço alterado!!");
+            alert.showAndWait();
+        }else{
+            ordemServicoRepository.add(ordemServico);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION,"ORDEM DE SERVIÇO CADASTRADA!!");
+            alert.showAndWait();
+
+
+        }
+
 
         Main.voltaTelaPrincipal();
 

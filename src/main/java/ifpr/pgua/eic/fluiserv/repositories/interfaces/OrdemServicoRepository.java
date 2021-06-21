@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 public interface OrdemServicoRepository {
 
     boolean add(OrdemServico ordemServico);
+    boolean editar(int cod,OrdemServico ordemServico);
     ObservableList<OrdemServico> lista();
 
 }

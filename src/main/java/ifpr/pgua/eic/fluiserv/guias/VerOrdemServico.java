@@ -79,12 +79,12 @@ public class VerOrdemServico {
         if (o != null) {
             String str = "";
             str += "CÓDIGO DA ORDEM:  " + o.getCod() + "\n";
+            str += "CLIENTE: " + o.getCliente() + "\n";
             str += "DESCRIÇÃO DO SERVIÇO:  " + o.getDescricaoDoServico() + "\n";
             str += "DESCRIÇÃO DO APARELHO:  " + o.getDescricaoAparelho() + "\n";
             str += "VALOR SUBTOTAL: " + o.getValorServico() + o.getValorMaterial() + "\n";
-            str += "CLIENTE: " + o.getCliente() + "\n";
-            str += "MODELO DO APARELHO: " + (o.isModelo()? "ACJ":"SPLIT")+ (o.isModelo()? "PISO-TETO":"CASSETE")+"\n";
-            str += "MARCA DO APARELHO: " + (o.isMarca()? "LG":"SPRINGER")+ (o.isMarca()? "ELGIN" : "CONSUL")+ (o.isMarca()? "ELECTROLUX":"KOMECO")+"\n";
+            str += "MODELO DO APARELHO: " + o.getModelo()+"\n";
+            str += "MARCA DO APARELHO: " + o.getMarca() +"\n";
             str += "DATA: " + o.getData() + "\n";
 
 

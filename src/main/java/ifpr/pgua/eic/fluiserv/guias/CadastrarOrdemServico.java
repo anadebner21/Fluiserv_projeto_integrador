@@ -11,13 +11,10 @@ import ifpr.pgua.eic.fluiserv.repositories.interfaces.OrdemServicoRepository;
 import ifpr.pgua.eic.fluiserv.repositories.interfaces.ServicoRepository;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.input.DataFormat;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
-import javafx.util.Callback;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -33,41 +30,10 @@ public class CadastrarOrdemServico {
     private TextField tfDescricaoServico;
 
     @FXML
-    private RadioButton rbAcj;
+    private ToggleGroup groupModelo;
 
     @FXML
-    private RadioButton rbSplit;
-
-    @FXML
-    private RadioButton rbPisoTeto;
-
-    @FXML
-    private RadioButton rbCassete;
-
-    @FXML
-    private RadioButton rbPortatil;
-
-    @FXML
-    private RadioButton rbLG;
-
-    @FXML
-    private RadioButton rbSpringer;
-
-    @FXML
-    private RadioButton rbElgin;
-
-    @FXML
-    private RadioButton rbConsul;
-
-    @FXML
-    private RadioButton rbElectrolux;
-
-    @FXML
-    private RadioButton rbKomeco;
-
-    @FXML
-    private RadioButton rbOutra;
-
+    private ToggleGroup groupMarca;
     @FXML
     private TextField tfDesAparelho;
 
@@ -215,10 +181,10 @@ public class CadastrarOrdemServico {
         String descricaoAparelho = tfDesAparelho.getText();
         double valorSubTotal = Double.valueOf(tfSubtotal.getText());
         double valorTotal = Double.valueOf(tfTotal.getText());
-        double valorMaterial = Double.valueOf(txtValorMaterial.getText());
-        double valorServico = Double.valueOf(txtValorServico.getText());
-        boolean modelo = rbAcj.isSelected();
-        boolean marca = rbLG.isSelected();
+        double valorMaterial = Double.valueOf(txtValorMaterial.getText().replace("R$ ", ""));
+        double valorServico = Double.valueOf(txtValorServico.getText().replace("R$ ", ""));
+        String modelo = ((RadioButton)groupModelo.getSelectedToggle()).getText();
+        String marca = ((RadioButton)groupMarca.getSelectedToggle()).getText();
         Cliente cliente = ltwClientes.getSelectionModel().getSelectedItem();
 
         DateTimeFormatter formater = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -241,8 +207,8 @@ public class CadastrarOrdemServico {
         this.ordemServico.setMarca(marca);
         this.ordemServico.setCliente(cliente);
 
-        ordemServicoRepository.add(ordemServico);
-        if (ordemServicoRepository != null){
+
+        if (ordemServicoOriginal != null){
             ordemServicoRepository.editar(ordemServicoOriginal.getCod(), ordemServico);
             Alert alert = new Alert(Alert.AlertType.INFORMATION,"Dados da ordem de serviço alterado!!");
             alert.showAndWait();

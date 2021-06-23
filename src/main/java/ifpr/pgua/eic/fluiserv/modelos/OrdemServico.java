@@ -3,7 +3,6 @@ package ifpr.pgua.eic.fluiserv.modelos;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.input.DataFormat;
 
 import java.time.LocalDate;
 
@@ -16,8 +15,8 @@ public class OrdemServico {
     private double valorMaterial;
     private double valorServico;
     private Cliente cliente;
-    private boolean modelo;
-    private boolean marca;
+    private String modelo;
+    private String marca;
     private LocalDate data;
 
     private ObservableList<Estoque> estoques;
@@ -32,7 +31,7 @@ public class OrdemServico {
         this.data = data;
     }
 
-    public OrdemServico(int cod, String descricaoDoServico, String descricaoAparelho, double valorSubTotal, double valorTotal, double valorMaterial, double valorServico, Cliente cliente, boolean modelo, boolean marca, LocalDate data){
+    public OrdemServico(int cod, String descricaoDoServico, String descricaoAparelho, double valorSubTotal, double valorTotal, double valorMaterial, double valorServico, Cliente cliente, String modelo, String marca, LocalDate data){
         this.cod = cod;
         this.descricaoDoServico = descricaoDoServico;
         this.descricaoAparelho = descricaoAparelho;
@@ -109,19 +108,19 @@ public class OrdemServico {
         this.cliente = cliente;
     }
 
-    public boolean isModelo() {
+    public String getModelo() {
         return modelo;
     }
 
-    public void setModelo(boolean modelo) {
+    public void setModelo(String modelo) {
         this.modelo = modelo;
     }
 
-    public boolean isMarca() {
+    public String getMarca() {
         return marca;
     }
 
-    public void setMarca(boolean marca) {
+    public void setMarca(String marca) {
         this.marca = marca;
     }
 

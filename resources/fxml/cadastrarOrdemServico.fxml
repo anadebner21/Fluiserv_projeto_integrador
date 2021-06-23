@@ -22,21 +22,28 @@
     <Label text="Descrição do serviço realizado:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
     <TextField fx:id="tfDescricaoServico" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
 
+
     <Label text="Modelo do aparelho:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
-    <RadioButton text="ACJ" fx:id="rbAcj" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
-    <RadioButton text="Spilt" fx:id="rbSplit" GridPane.rowIndex="4" GridPane.columnIndex="1" />
-    <RadioButton text="Piso-Teto" fx:id="rbPisoTeto" GridPane.rowIndex="4" GridPane.columnIndex="2"/>
-    <RadioButton text="Cassete" fx:id="rbCassete" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
-    <RadioButton text="Portátil" fx:id="rbPortatil" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+    <fx:define>
+        <ToggleGroup fx:id="groupModelo"/>
+    </fx:define>
+    <RadioButton text="ACJ" toggleGroup="$groupModelo" fx:id="rbAcj" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+    <RadioButton text="Spilt" toggleGroup="$groupModelo" fx:id="rbSplit" GridPane.rowIndex="4" GridPane.columnIndex="1" />
+    <RadioButton text="Piso-Teto" toggleGroup="$groupModelo" fx:id="rbPisoTeto" GridPane.rowIndex="4" GridPane.columnIndex="2"/>
+    <RadioButton text="Cassete" toggleGroup="$groupModelo" fx:id="rbCassete" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+    <RadioButton text="Portátil" toggleGroup="$groupModelo" fx:id="rbPortatil" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
 
     <Label text="Marca do aparelho:" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
-    <RadioButton text="LG" fx:id="rbLG" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
-    <RadioButton text="SPRINGER" fx:id="rbSpringer" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
-    <RadioButton text="ELGIN" fx:id="rbElgin" GridPane.rowIndex="7" GridPane.columnIndex="2"/>
-    <RadioButton text="CONSUL" fx:id="rbConsul" GridPane.rowIndex="7" GridPane.columnIndex="3"/>
-    <RadioButton text="ELECTROLUX" fx:id="rbElectrolux" GridPane.rowIndex="8" GridPane.columnIndex="0"/>
-    <RadioButton text="KOMECO" fx:id="rbKomeco" GridPane.rowIndex="8" GridPane.columnIndex="1"/>
-    <RadioButton text="OUTRA" fx:id="rbOutra" GridPane.rowIndex="8" GridPane.columnIndex="2"/>
+    <fx:define>
+        <ToggleGroup fx:id="groupMarca"/>
+    </fx:define>
+    <RadioButton text="LG" toggleGroup="$groupMarca" fx:id="rbLG" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+    <RadioButton text="SPRINGER" toggleGroup="$groupMarca" fx:id="rbSpringer" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+    <RadioButton text="ELGIN" toggleGroup="$groupMarca" fx:id="rbElgin" GridPane.rowIndex="7" GridPane.columnIndex="2"/>
+    <RadioButton text="CONSUL" toggleGroup="$groupMarca" fx:id="rbConsul" GridPane.rowIndex="7" GridPane.columnIndex="3"/>
+    <RadioButton text="ELECTROLUX" toggleGroup="$groupMarca" fx:id="rbElectrolux" GridPane.rowIndex="8" GridPane.columnIndex="0"/>
+    <RadioButton text="KOMECO" toggleGroup="$groupMarca" fx:id="rbKomeco" GridPane.rowIndex="8" GridPane.columnIndex="1"/>
+    <RadioButton text="OUTRA" toggleGroup="$groupMarca" fx:id="rbOutra" GridPane.rowIndex="8" GridPane.columnIndex="2"/>
 
     <Label text="Descrição do aparelho:" GridPane.rowIndex="9" GridPane.columnIndex="0"/>
     <TextField fx:id="tfDesAparelho" GridPane.rowIndex="9" GridPane.columnIndex="1"/>

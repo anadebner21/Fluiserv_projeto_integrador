@@ -43,8 +43,8 @@ public class OrdemServicoRepositoryImpl implements OrdemServicoRepository {
                 o.setValorTotal(ordemServico.getValorTotal());
                 o.setValorServico(ordemServico.getValorServico());
                 o.setValorMaterial(ordemServico.getValorMaterial());
-                o.setMarca(ordemServico.isMarca());
-                o.setModelo(ordemServico.isModelo());
+                o.setMarca(ordemServico.getMarca());
+                o.setModelo(ordemServico.getModelo());
                 o.setCliente(ordemServico.getCliente());
                 o.setData(ordemServico.getData());
 

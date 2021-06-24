@@ -9,7 +9,7 @@ public interface ClienteDAO {
 
     boolean inserir(Cliente cliente) throws SQLException;
 
-    boolean atualizar(Cliente cliente) throws SQLException;
+    boolean atualizar(String cpf_cnpj, Cliente cliente) throws SQLException;
 
     List<Cliente> lista() throws SQLException;
 

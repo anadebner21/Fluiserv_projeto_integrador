@@ -28,19 +28,11 @@ public class ClienteRepositoryImpl implements ClienteRepository {
 
     }
 
-    public boolean editar(String cpf_cnpj, Cliente cliente) throws SQLException{
-        for(Cliente c:clientes){
-            if(c.getCpf_cnpj() == cpf_cnpj){
-                c.setNome(cliente.getNome());
-                c.setTelefone(cliente.getTelefone());
-                c.setEmail(cliente.getEmail());
-                c.setEndereco(cliente.getEndereco());
-                c.setCidade(cliente.getCidade());
 
-                return  true;
-            }
-        }
-        return false;
+    @Override
+    public boolean editar(String cpf_cnpj, Cliente cliente) throws SQLException{
+
+        return clienteDAO.atualizar(cpf_cnpj, cliente);
     }
 
 

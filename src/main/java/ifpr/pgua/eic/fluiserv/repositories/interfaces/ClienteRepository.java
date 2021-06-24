@@ -9,7 +9,7 @@ public interface ClienteRepository {
 
 
     boolean add(Cliente cliente) throws SQLException;
-    boolean editar(String cpf_cnpj, Cliente clienteAntigo) throws SQLException;
+    boolean editar(String cpf_cnpj, Cliente clienteOriginal) throws SQLException;
     ObservableList<Cliente> lista() throws SQLException;
 
 

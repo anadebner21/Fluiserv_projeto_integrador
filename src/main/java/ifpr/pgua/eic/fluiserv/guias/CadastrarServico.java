@@ -1,12 +1,15 @@
 package ifpr.pgua.eic.fluiserv.guias;
 
 import ifpr.pgua.eic.fluiserv.Main;
+import ifpr.pgua.eic.fluiserv.modelos.Cliente;
 import ifpr.pgua.eic.fluiserv.modelos.Servico;
 import ifpr.pgua.eic.fluiserv.repositories.interfaces.ServicoRepository;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
+
+import java.sql.SQLException;
 
 public class CadastrarServico {
 
@@ -18,6 +21,10 @@ public class CadastrarServico {
 
     @FXML
     private TextField tfValor;
+
+    @FXML
+    private TextArea dadosServico;
+
 
     private ServicoRepository servicoRepository;
     private Servico servicoOriginal;
@@ -58,7 +65,14 @@ public class CadastrarServico {
                 };
             }
         });
-        ltwServico.setItems(servicoRepository.lista());
+
+        try {
+            ltwServico.setItems(servicoRepository.lista());
+
+        }catch (SQLException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR,e.getMessage());
+            alert.showAndWait();
+        }
 
         if(servicoOriginal != null) {
 
@@ -69,15 +83,16 @@ public class CadastrarServico {
         }
 
 
+    }
 
-        }
+
     @FXML
     public void editarServico(MouseEvent evt) {
         if (evt.getClickCount() == 2) {
 
             Servico servico = ltwServico.getSelectionModel().getSelectedItem();
             if (servico != null) {
-                Main.mudaCena(Main.SERVICO, (aClass) -> new CadastrarServico(servicoRepository));
+                Main.mudaCena(Main.SERVICO, (aClass) -> new CadastrarServico(servicoRepository, servico));
             }
 
         }
@@ -87,37 +102,54 @@ public class CadastrarServico {
     @FXML
     public void adicionar() {
         String nome = tfNome.getText();
-        double valor = -1;
-
-        try {
-            Double.valueOf(tfValor.getText());
-        }catch (NumberFormatException e){
-            Alert alert = new Alert(Alert.AlertType.ERROR,"Valor inválido!!");
-            alert.showAndWait();
-            return;
-        }
+        double valor = Double.valueOf(tfValor.getText());
         if(nome.equals("")){
             Alert alert = new Alert(Alert.AlertType.ERROR,"Nome inválido!!");
             alert.showAndWait();
             return;
         }
 
+        int cod = 0;
+        Servico servico = new Servico(cod, nome, valor);
 
-        Servico servico = new Servico(nome, valor);
+        try{
+            if (servicoOriginal != null){
+                servicoRepository.editar(servicoOriginal.getCod(), servico);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION,"Dados do serviço alterado!!");
+                alert.showAndWait();
+            }else{
+                servicoRepository.add(servico);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION,"SERVIÇO CADASTRADO!!");
+                alert.showAndWait();
 
 
-        if (servicoOriginal != null){
-            servicoRepository.editar(servicoOriginal.getCod(), servico);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION,"Dados do cliente alterado!!");
+            }
+        }catch (SQLException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR,e.getMessage());
             alert.showAndWait();
-        }else{
-            servicoRepository.add(servico);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION,"SERVIÇO CADASTRADO!!");
-            alert.showAndWait();
-
-
         }
     }
+
+    @FXML
+    private void atualizaDadosServico() {
+
+        Servico s = (Servico) ltwServico.getSelectionModel().getSelectedItem();
+
+        if (s != null) {
+            String str = "";
+            str += "Código  " + s.getCod() + "\n";
+            str += "NOME: " + s.getNome() + "\n";
+            str += "VALOR: " + s.getValor() + "\n";
+
+
+
+            dadosServico.clear();
+            dadosServico.setText(str);
+        }
+    }
+
+
+
 
     @FXML
     private void cancelar(){

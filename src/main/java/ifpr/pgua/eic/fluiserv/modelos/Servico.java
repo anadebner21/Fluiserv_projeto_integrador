@@ -12,10 +12,6 @@ public class Servico {
         this.valor = valor;
     }
 
-    public Servico(String nome, double valor) {
-        this(-1, nome, valor);
-    }
-
     public int getCod() {
         return cod;
     }

@@ -144,7 +144,14 @@ public class CadastrarOrdemServico {
                     }
             }
         });
-        ltwServico.setItems(servicoRepository.lista());
+
+        try {
+            ltwServico.setItems(servicoRepository.lista());
+
+        }catch (SQLException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR,e.getMessage());
+            alert.showAndWait();
+        }
 
     }
 

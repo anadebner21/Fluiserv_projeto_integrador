@@ -17,7 +17,11 @@
     <Label text="Valor:" labelFor="$tfValor" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
     <TextField fx:id="tfValor" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
 
-    <ListView fx:id="ltwServico" GridPane.rowIndex="2" GridPane.columnIndex="0" GridPane.columnSpan="3" onMouseClicked="#editarServico" />
+
+    <HBox GridPane.columnIndex="0" GridPane.rowIndex="2" spacing="5" GridPane.columnSpan="4" GridPane.rowSpan="1">
+        <ListView fx:id="ltwServico" GridPane.rowIndex="2" GridPane.columnIndex="0" GridPane.columnSpan="3" onMouseClicked="#editarServico" onMousePressed="#atualizaDadosServico" />
+        <TextArea fx:id="dadosServico"/>
+    </HBox>
 
 
     <HBox GridPane.rowIndex="6" GridPane.columnIndex="1">

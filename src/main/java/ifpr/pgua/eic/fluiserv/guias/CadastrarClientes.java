@@ -8,6 +8,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
+import java.sql.SQLException;
+
 public class CadastrarClientes {
 
     @FXML
@@ -112,19 +114,25 @@ public class CadastrarClientes {
         Cliente cliente = new Cliente(cpf_cnpj, nome, email, telefone, endereco, cidade);
 
 
+        try {
+            if (clienteOriginal != null){
+                clienteRepository.editar(clienteOriginal.getCpf_cnpj(), cliente);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION,"Dados do cliente alterado!!");
+                alert.showAndWait();
+            }else{
+                clienteRepository.add(cliente);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION,"CLIENTE CADASTRADO!!");
+                alert.showAndWait();
 
 
-        if (clienteOriginal != null){
-            clienteRepository.editar(clienteOriginal.getCpf_cnpj(), cliente);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION,"Dados do cliente alterado!!");
+            }
+
+        }catch (SQLException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR,e.getMessage());
             alert.showAndWait();
-        }else{
-            clienteRepository.add(cliente);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION,"CLIENTE CADASTRADO!!");
-            alert.showAndWait();
-
-
         }
+
+
 
 
             Main.voltaTelaPrincipal();

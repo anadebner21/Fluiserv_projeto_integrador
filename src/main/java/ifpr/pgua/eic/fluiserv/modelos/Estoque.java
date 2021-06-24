@@ -18,10 +18,6 @@ public class Estoque {
 
         }
 
-    public Estoque(String nome, String descricao, int quantidade, float valor) {
-        this(-1,nome,descricao,quantidade,valor);
-    }
-
     public int getCod() {
 
             return cod;

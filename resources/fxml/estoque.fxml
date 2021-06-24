@@ -11,6 +11,9 @@
             fx:controller="ifpr.pgua.eic.fluiserv.guias.CadastraEstoque"
             prefHeight="400.0" prefWidth="600.0">
 
+    <Label text="Codigo: " GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+    <TextField fx:id="tfCodigo" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+
     <Label text="Nome do produto:" labelFor="$tfProduto" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
     <TextField fx:id="tfProduto" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 

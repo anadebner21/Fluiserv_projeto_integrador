@@ -10,7 +10,7 @@ public class Cliente {
     private String cidade;
 
 
-    public Cliente(String cpf_cnpj, String nome, String email,String telefone, String endereco, String cidade){
+    public Cliente(String cpf_cnpj, String nome, String email, String telefone, String endereco, String cidade){
         this.cpf_cnpj = cpf_cnpj;
         this.nome = nome;
         this.email = email;

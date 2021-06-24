@@ -1,34 +1,31 @@
 package ifpr.pgua.eic.fluiserv.repositories;
+import ifpr.pgua.eic.fluiserv.daos.interfaces.EstoqueDAO;
 import ifpr.pgua.eic.fluiserv.modelos.Estoque;
 import ifpr.pgua.eic.fluiserv.repositories.interfaces.EstoqueRepository;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.sql.SQLException;
+
 public class EstoqueRepositoryimpl implements EstoqueRepository {
         private ObservableList<Estoque> estoques;
+        private EstoqueDAO estoqueDAO;
 
-        private void aleatorio(){
 
-            estoques.add(new Estoque("tubulação", "3/4", 2, 25 ));
-            estoques.add(new Estoque("tubulação1", "3/4", 2, 50 ));
-            estoques.add(new Estoque("tubulação2", "3/4", 2, 75 ));
-            estoques.add(new Estoque("tubulação3", "3/4", 2, 100 ));
 
-        }
-
-        public EstoqueRepositoryimpl(){
+        public EstoqueRepositoryimpl(EstoqueDAO estoqueDAO){
 
             estoques = FXCollections.observableArrayList();
-            aleatorio();
-        }
-        public boolean add(Estoque estoque){
-                estoques.add(new Estoque(estoques.size(), estoque.getNome(), estoque.getDescricao(), estoque.getQuantidade(), Double.valueOf(estoque.getValor())));
+            this.estoqueDAO = estoqueDAO;
 
+        }
+        public boolean add(Estoque estoque) throws SQLException{
+                estoqueDAO.inserir(estoque);
                 return true;
         }
 
      @Override
-    public boolean editar(int cod, Estoque estoque){
+    public boolean editar(int cod, Estoque estoque) throws SQLException {
 
             Estoque antigo = estoques.stream().filter((e-> e.getCod() == cod)).findFirst().get();
 
@@ -45,7 +42,9 @@ public class EstoqueRepositoryimpl implements EstoqueRepository {
         return false;
     }
 
-    public ObservableList<Estoque> lista(){
+    public ObservableList<Estoque> lista() throws SQLException{
+        estoques.clear();
+        estoques.addAll(estoqueDAO.lista());
 
         return FXCollections.unmodifiableObservableList(estoques);
     }

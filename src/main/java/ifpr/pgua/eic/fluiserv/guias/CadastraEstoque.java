@@ -8,10 +8,15 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
+import java.sql.SQLException;
+
 public class CadastraEstoque {
 
     @FXML
     private TextField tfProduto;
+
+    @FXML
+    private TextField tfCodigo;
 
     @FXML
     private TextField tfDescricao;
@@ -59,16 +64,10 @@ public class CadastraEstoque {
     public void adicionar() {
         String nome = tfProduto.getText();
         String descricao = tfDescricao.getText();
-        int quantidade = quantidade = Integer.parseInt(tfQuantidade.getText());
-        double valor = -1;
+        int quantidade = Integer.parseInt(tfQuantidade.getText());
+        double valor = Double.valueOf(tfValor.getText());
 
-    try {
-        Double.valueOf(tfValor.getText());
-    }catch (NumberFormatException e){
-        Alert alert = new Alert(Alert.AlertType.ERROR,"Valor inválido!!");
-        alert.showAndWait();
-        return;
-    }
+
         if(quantidade <= 0){
             Alert alert = new Alert(Alert.AlertType.ERROR,"Quantidade não reconhecida!!");
             alert.showAndWait();
@@ -88,21 +87,27 @@ public class CadastraEstoque {
         }
 
 
-        Estoque estoque = new Estoque(nome, descricao, quantidade, -1);
+        int cod = 0;
+        Estoque estoque = new Estoque(cod, nome, descricao, quantidade, valor);
 
 
+        try {
+            if (estoqueOriginal != null){
+                estoqueRepository.editar(estoqueOriginal.getCod(), estoque);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION,"Dados do produto alterado!!");
+                alert.showAndWait();
+            }else{
+                estoqueRepository.add(estoque);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION,"PRODUTO CADASTRADO!!");
+                alert.showAndWait();
 
-        if (estoqueOriginal != null){
-            estoqueRepository.editar(estoqueOriginal.getCod(), estoque);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION,"Dados do produto alterado!!");
+
+            }
+        }catch (SQLException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR,e.getMessage());
             alert.showAndWait();
-        }else{
-            estoqueRepository.add(estoque);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION,"PRODUTO CADASTRADO!!");
-            alert.showAndWait();
-
-
         }
+
 
         Main.voltaTelaPrincipal();
 

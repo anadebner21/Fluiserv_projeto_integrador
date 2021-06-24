@@ -3,9 +3,11 @@ package ifpr.pgua.eic.fluiserv.repositories.interfaces;
 import ifpr.pgua.eic.fluiserv.modelos.Estoque;
 import javafx.collections.ObservableList;
 
-public interface EstoqueRepository {
-    boolean add(Estoque estoque);
-    boolean editar(int cod, Estoque estoque);
+import java.sql.SQLException;
 
-    ObservableList<Estoque> lista();
+public interface EstoqueRepository {
+    boolean add(Estoque estoque) throws SQLException;
+    boolean editar(int cod, Estoque estoque) throws SQLException;
+
+    ObservableList<Estoque> lista() throws SQLException;
 }

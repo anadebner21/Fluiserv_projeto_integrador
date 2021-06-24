@@ -4,12 +4,14 @@ import ifpr.pgua.eic.fluiserv.Main;
 import ifpr.pgua.eic.fluiserv.modelos.Cliente;
 import ifpr.pgua.eic.fluiserv.repositories.interfaces.ClienteRepository;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 
+import java.sql.SQLException;
 
 
 public class VerClientes {
@@ -50,7 +52,15 @@ public class VerClientes {
                 };
             }
         });
-        ltwClientes.setItems(clienteRepository.lista());
+
+        try {
+            ltwClientes.setItems(clienteRepository.lista());
+
+        }catch (SQLException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR,e.getMessage());
+            alert.showAndWait();
+        }
+
     }
 
 

@@ -15,6 +15,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -101,7 +102,14 @@ public class CadastrarOrdemServico {
                 }
             }
         });
-        ltwClientes.setItems(clienteRepository.lista());
+
+
+        try {
+            ltwClientes.setItems(clienteRepository.lista());
+        }catch (SQLException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR,e.getMessage());
+            alert.showAndWait();
+        }
 
 
         ltwEstoque.setCellFactory(estoqueListView -> new ListCell<>(){
@@ -116,8 +124,13 @@ public class CadastrarOrdemServico {
                 }
             }
         });
+        try {
+            ltwEstoque.setItems(estoqueRepository.lista());
 
-        ltwEstoque.setItems(estoqueRepository.lista());
+        }catch (SQLException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR,e.getMessage());
+            alert.showAndWait();
+        }
 
 
         ltwServico.setCellFactory(servicoListView -> new ListCell<>(){

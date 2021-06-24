@@ -1,6 +1,10 @@
 package ifpr.pgua.eic.fluiserv;
 
 
+import ifpr.pgua.eic.fluiserv.daos.JDBCClienteDAO;
+import ifpr.pgua.eic.fluiserv.daos.JDBCEstoqueDAO;
+import ifpr.pgua.eic.fluiserv.daos.interfaces.ClienteDAO;
+import ifpr.pgua.eic.fluiserv.daos.interfaces.EstoqueDAO;
 import ifpr.pgua.eic.fluiserv.guias.CadastrarClientes;
 import ifpr.pgua.eic.fluiserv.guias.TelaPrincipal;
 import ifpr.pgua.eic.fluiserv.repositories.EstoqueRepositoryimpl;
@@ -38,6 +42,9 @@ public class Main extends Application {
     private static ServicoRepository servicoRepository;
     private static OrdemServicoRepository ordemServicoRepository;
 
+    private static ClienteDAO clienteDAO;
+    private static EstoqueDAO estoqueDAO;
+
 
     public static StackPane base;
 
@@ -53,9 +60,12 @@ public class Main extends Application {
     public void init() throws Exception {
         super.init();
 
+        clienteDAO = new JDBCClienteDAO();
+        estoqueDAO = new JDBCEstoqueDAO();
 
-        clienteRepository = new ClienteRepositoryImpl();
-        estoqueRepository = new EstoqueRepositoryimpl();
+
+        clienteRepository = new ClienteRepositoryImpl(clienteDAO);
+        estoqueRepository = new EstoqueRepositoryimpl(estoqueDAO);
         servicoRepository = new ServicoRepositoryimpl();
         ordemServicoRepository = new OrdemServicoRepositoryImpl();
 

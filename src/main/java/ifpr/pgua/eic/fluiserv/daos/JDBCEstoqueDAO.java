@@ -12,6 +12,7 @@ public class JDBCEstoqueDAO implements EstoqueDAO {
 
     private static final String INSERT = "INSERT INTO estoque(nome, descricao, quantidade, valor) VALUES (?,?,?,?)";
     private static final String LISTA = "SELECT * FROM estoque";
+    private static final String UPDATE = "UPDATE estoque set nome=?, descricao=?, quantidade=?, valor=? where cod=?";
 
 
     @Override
@@ -34,8 +35,26 @@ public class JDBCEstoqueDAO implements EstoqueDAO {
     }
 
     @Override
-    public boolean atualizar(Estoque estoque) throws SQLException {
-        return false;
+    public boolean atualizar(int cod,Estoque estoque) throws SQLException {
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/projeto_integrador", "root", "");
+
+        PreparedStatement preparedStatement = conn.prepareStatement(UPDATE);
+
+
+        preparedStatement.setString(1, estoque.getNome());
+        preparedStatement.setString(2, estoque.getDescricao());
+        preparedStatement.setInt(3, estoque.getQuantidade());
+        preparedStatement.setDouble(4, estoque.getValor());
+        preparedStatement.setInt(5,cod);
+
+
+
+        int ret = preparedStatement.executeUpdate();
+
+        preparedStatement.close();
+        conn.close();
+        return ret == 1;
+
     }
 
     @Override

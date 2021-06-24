@@ -8,7 +8,7 @@ public interface EstoqueDAO {
 
     boolean inserir(Estoque estoque) throws SQLException;
 
-    boolean atualizar(Estoque estoque) throws SQLException;
+    boolean atualizar(int cod, Estoque estoque) throws SQLException;
 
     List<Estoque> lista() throws SQLException;
 

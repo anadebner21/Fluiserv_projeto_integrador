@@ -26,20 +26,8 @@ public class EstoqueRepositoryimpl implements EstoqueRepository {
 
      @Override
     public boolean editar(int cod, Estoque estoque) throws SQLException {
+            return estoqueDAO.atualizar(cod, estoque);
 
-            Estoque antigo = estoques.stream().filter((e-> e.getCod() == cod)).findFirst().get();
-
-            if(antigo != null){
-
-                antigo.setNome(estoque.getNome());
-                antigo.setDescricao(estoque.getDescricao());
-                antigo.setQuantidade(estoque.getQuantidade());
-                antigo.setValor(estoque.getValor());
-
-                return  true;
-            }
-
-        return false;
     }
 
     public ObservableList<Estoque> lista() throws SQLException{

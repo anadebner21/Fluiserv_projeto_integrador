@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="ifpr.pgua.eic.fluiserv.guias.TelaPrincipal"
+            prefHeight="400.0" prefWidth="600.0" vgap="5" hgap="5">
+
+
+        <Button text="Cadastrar Cliente" GridPane.rowIndex="0" GridPane.columnIndex="0" onAction="#cadastrarCliente"/>
+        <Button  text="Visualizar Clientes" GridPane.rowIndex="0" GridPane.columnIndex="1" onAction="#verClientes"/>
+        <Button  text="Cadastrar Materiais" GridPane.rowIndex="1" GridPane.columnIndex="0" onAction="#cadastrarEstoque"/>
+        <Button  text="Visualizar Materiais ou Peças" GridPane.rowIndex="1" GridPane.columnIndex="1" onAction="#verEstoque"/>
+        <Button text="Cadastar Serviços" GridPane.rowIndex="2" GridPane.columnIndex="0" onAction="#cadastarServico"/>
+        <Button  text="Cadastar Ordens de Serviço" GridPane.rowIndex="3" GridPane.columnIndex="0" onAction="#cadastrarOrdemServico"/>
+        <Button  text="Visualizar Ordens de Serviço" GridPane.rowIndex="3" GridPane.columnIndex="1" onAction="#verOrdemServico"/>
+
+</GridPane>
